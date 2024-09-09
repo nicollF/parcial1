@@ -1,0 +1,3021 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Punto 2 (parte 2) &#8212; Primer parcial Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'segundopunto_parte2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ejercicio 4 (modelo de regresión)" href="cuartopunto.html" />
+    <link rel="prev" title="Punto 2 (parte 1) y Punto 3" href="segundopunto_parte1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uninortelogo.jpeg" class="logo__image only-light" alt="Primer parcial Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/uninortelogo.jpeg" class="logo__image only-dark" alt="Primer parcial Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Primer parcial ML.
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="primerpunto_parte1.html"><strong>Primer Punto (Parte 1)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="primerpunto_parte2.html"><strong>Punto 1 (parte 2)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="segundopunto_parte1.html"><strong>Punto 2 (parte 1) y Punto 3</strong></a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Punto 2 (parte 2)</strong></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="cuartopunto.html"><strong>Ejercicio 4 (modelo de regresión)</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsegundopunto_parte2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/segundopunto_parte2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Punto 2 (parte 2)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Punto 2 (parte 2)</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-cell-pertubations"><strong>Single-Cell pertubations</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis exploratorio de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-que-consiste"><strong>En que consiste</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-de-los-datos"><strong>Fuente de los datos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedimiento-del-experimento"><strong>Procedimiento del experimento</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-descriptivo-de-los-datos">Análisis Descriptivo de los Datos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrain-dataset">detrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adatatrain-dataset">adatatrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adataobsmeta-dataset">adataobsmeta (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiomevarmeta-dataset">multiomevarmeta (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiometrain-dataset">multiometrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idmap-dataset">idmap (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Análisis bivariado</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="punto-2-parte-2">
+<h1><strong>Punto 2 (parte 2)</strong><a class="headerlink" href="#punto-2-parte-2" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="single-cell-pertubations">
+<h1><strong>Single-Cell pertubations</strong><a class="headerlink" href="#single-cell-pertubations" title="Link to this heading">#</a></h1>
+<section id="analisis-exploratorio-de-datos">
+<h2>Análisis exploratorio de datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
+<section id="resumen">
+<h3><strong>Resumen</strong><a class="headerlink" href="#resumen" title="Link to this heading">#</a></h3>
+<p>La comprensión de cómo se expresan los genes y cómo la estructura del ADN afecta esa expresión es fundamental para descubrir cómo funcionan los procesos en los cuerpos humanos y para entender los mecanismos biológicos detrás de diversos problemas de salud y enfermedades. La ciencia está en constante avance, y es crucial combinar las herramientas que nos proporciona para obtener mejores resultados en la investigación y el conocimiento sobre la regulación genética y la función celular. Esto puede ayudarnos a lograr diagnósticos más precisos y tratamientos más efectivos.</p>
+</section>
+<section id="en-que-consiste">
+<h3><strong>En que consiste</strong><a class="headerlink" href="#en-que-consiste" title="Link to this heading">#</a></h3>
+<p>El análisis se enfoca en un conjunto de datos que consta de 9 datasets, cada uno con contenido diferente y destinado a distintos propósitos. Se centra en un conjunto de datos que incluye mediciones de expresión génica y accesibilidad a la cromatina. La integración de estos tipos de datos nos permite explorar cómo la estructura del ADN influye en la expresión de los genes y en diversas características que podemos identificar.</p>
+</section>
+<section id="fuente-de-los-datos">
+<h3><strong>Fuente de los datos</strong><a class="headerlink" href="#fuente-de-los-datos" title="Link to this heading">#</a></h3>
+<p>Los datos fueron obtenidos de una plataforma de investigación genómica, donde se recopilan y procesan datos mutiómicos de diversas muestras biológicas. Estos datos proporcionados, ayudan a los investigadores a estudiar la complejidad de la regulación genética en diferentes contextos. Por otro lado, fueron descargados desde la plataforma web <em>Kaggle</em>.</p>
+</section>
+<section id="procedimiento-del-experimento">
+<h3><strong>Procedimiento del experimento</strong><a class="headerlink" href="#procedimiento-del-experimento" title="Link to this heading">#</a></h3>
+<p>Se utilizaron células mononucleares de sangre periférica de donantes en placas de 96 pocillos, con controles positivos y negativos. Se asignaron 72 compuestos a los pocillos restantes.
+Cada pocillo contiene diferentes tipos de células, y se mide la expresión genética en aproximadamente 350 células.
+Por último, para calcular la expresión diferencial, se promedian los recuentos de expresión genética por tipo celular y se ajusta un modelo lineal, considerando factores técnicos como la biblioteca, la placa y el donante.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analisis-descriptivo-de-los-datos">
+<h1>Análisis Descriptivo de los Datos<a class="headerlink" href="#analisis-descriptivo-de-los-datos" title="Link to this heading">#</a></h1>
+<p>Como se dijo anteriormente, el problema propuesto, cuenta con 9 dataset que analizaremos y observaremos para obtener información detallada sobre ellos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">pypalettes</span> <span class="kn">import</span> <span class="n">load_cmap</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">squarify</span>
+<span class="kn">import</span> <span class="nn">statsmodels</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="detrain-dataset">
+<h2>detrain (dataset)<a class="headerlink" href="#detrain-dataset" title="Link to this heading">#</a></h2>
+<p>Este dataset contiene datos de expresión diferencial (proceso donde se activan diferentes genes en una célula), estas indican los cambios en la expresión de los genes luego de tratar las células con diferentes compuestos.</p>
+<p>cargamos el dataset con la ayuda de la libreria <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, para leer el archivo parquet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrain</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\de_train.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrain</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cell_type</th>
+      <th>sm_name</th>
+      <th>sm_lincs_id</th>
+      <th>SMILES</th>
+      <th>control</th>
+      <th>A1BG</th>
+      <th>A1BG-AS1</th>
+      <th>A2M</th>
+      <th>A2M-AS1</th>
+      <th>A2MP1</th>
+      <th>...</th>
+      <th>ZUP1</th>
+      <th>ZW10</th>
+      <th>ZWILCH</th>
+      <th>ZWINT</th>
+      <th>ZXDA</th>
+      <th>ZXDB</th>
+      <th>ZXDC</th>
+      <th>ZYG11B</th>
+      <th>ZYX</th>
+      <th>ZZEF1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NK cells</td>
+      <td>Clotrimazole</td>
+      <td>LSM-5341</td>
+      <td>Clc1ccccc1C(c1ccccc1)(c1ccccc1)n1ccnc1</td>
+      <td>False</td>
+      <td>0.104720</td>
+      <td>-0.077524</td>
+      <td>-1.625596</td>
+      <td>-0.144545</td>
+      <td>0.143555</td>
+      <td>...</td>
+      <td>-0.227781</td>
+      <td>-0.010752</td>
+      <td>-0.023881</td>
+      <td>0.674536</td>
+      <td>-0.453068</td>
+      <td>0.005164</td>
+      <td>-0.094959</td>
+      <td>0.034127</td>
+      <td>0.221377</td>
+      <td>0.368755</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>T cells CD4+</td>
+      <td>Clotrimazole</td>
+      <td>LSM-5341</td>
+      <td>Clc1ccccc1C(c1ccccc1)(c1ccccc1)n1ccnc1</td>
+      <td>False</td>
+      <td>0.915953</td>
+      <td>-0.884380</td>
+      <td>0.371834</td>
+      <td>-0.081677</td>
+      <td>-0.498266</td>
+      <td>...</td>
+      <td>-0.494985</td>
+      <td>-0.303419</td>
+      <td>0.304955</td>
+      <td>-0.333905</td>
+      <td>-0.315516</td>
+      <td>-0.369626</td>
+      <td>-0.095079</td>
+      <td>0.704780</td>
+      <td>1.096702</td>
+      <td>-0.869887</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>T cells CD8+</td>
+      <td>Clotrimazole</td>
+      <td>LSM-5341</td>
+      <td>Clc1ccccc1C(c1ccccc1)(c1ccccc1)n1ccnc1</td>
+      <td>False</td>
+      <td>-0.387721</td>
+      <td>-0.305378</td>
+      <td>0.567777</td>
+      <td>0.303895</td>
+      <td>-0.022653</td>
+      <td>...</td>
+      <td>-0.119422</td>
+      <td>-0.033608</td>
+      <td>-0.153123</td>
+      <td>0.183597</td>
+      <td>-0.555678</td>
+      <td>-1.494789</td>
+      <td>-0.213550</td>
+      <td>0.415768</td>
+      <td>0.078439</td>
+      <td>-0.259365</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>T regulatory cells</td>
+      <td>Clotrimazole</td>
+      <td>LSM-5341</td>
+      <td>Clc1ccccc1C(c1ccccc1)(c1ccccc1)n1ccnc1</td>
+      <td>False</td>
+      <td>0.232893</td>
+      <td>0.129029</td>
+      <td>0.336897</td>
+      <td>0.486946</td>
+      <td>0.767661</td>
+      <td>...</td>
+      <td>0.451679</td>
+      <td>0.704643</td>
+      <td>0.015468</td>
+      <td>-0.103868</td>
+      <td>0.865027</td>
+      <td>0.189114</td>
+      <td>0.224700</td>
+      <td>-0.048233</td>
+      <td>0.216139</td>
+      <td>-0.085024</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NK cells</td>
+      <td>Mometasone Furoate</td>
+      <td>LSM-3349</td>
+      <td>C[C@@H]1C[C@H]2[C@@H]3CCC4=CC(=O)C=C[C@]4(C)[C...</td>
+      <td>False</td>
+      <td>4.290652</td>
+      <td>-0.063864</td>
+      <td>-0.017443</td>
+      <td>-0.541154</td>
+      <td>0.570982</td>
+      <td>...</td>
+      <td>0.758474</td>
+      <td>0.510762</td>
+      <td>0.607401</td>
+      <td>-0.123059</td>
+      <td>0.214366</td>
+      <td>0.487838</td>
+      <td>-0.819775</td>
+      <td>0.112365</td>
+      <td>-0.122193</td>
+      <td>0.676629</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 18216 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrain</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(614, 18216)
+</pre></div>
+</div>
+</div>
+</div>
+<p>La base de datos <code class="docutils literal notranslate"><span class="pre">detrain</span></code> cuenta con 614 filas y 18,216 columnas.</p>
+<p>Además, cuenta con diferentes variables, A continuación, mostraremos el tipo de cada una de ellas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrain</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_type       object
+sm_name         object
+sm_lincs_id     object
+SMILES          object
+control           bool
+                ...   
+ZXDB           float64
+ZXDC           float64
+ZYG11B         float64
+ZYX            float64
+ZZEF1          float64
+Length: 18216, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos observar, que <strong>cell_type</strong>, <strong>sm_name</strong>, <strong>sm_lincs_id</strong>, <strong>SMILES</strong>, son variables categóricas, <strong>control</strong> es un booleano, y el resto de variables del dataset son numéricas, que corresponden a los genes de nuestro interés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrain</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A1BG</th>
+      <th>A1BG-AS1</th>
+      <th>A2M</th>
+      <th>A2M-AS1</th>
+      <th>A2MP1</th>
+      <th>A4GALT</th>
+      <th>AAAS</th>
+      <th>AACS</th>
+      <th>AAGAB</th>
+      <th>AAK1</th>
+      <th>...</th>
+      <th>ZUP1</th>
+      <th>ZW10</th>
+      <th>ZWILCH</th>
+      <th>ZWINT</th>
+      <th>ZXDA</th>
+      <th>ZXDB</th>
+      <th>ZXDC</th>
+      <th>ZYG11B</th>
+      <th>ZYX</th>
+      <th>ZZEF1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>...</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+      <td>614.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.366769</td>
+      <td>0.250951</td>
+      <td>0.148259</td>
+      <td>0.155733</td>
+      <td>0.684275</td>
+      <td>0.946273</td>
+      <td>0.000582</td>
+      <td>0.348203</td>
+      <td>0.009424</td>
+      <td>0.062662</td>
+      <td>...</td>
+      <td>0.071179</td>
+      <td>0.159252</td>
+      <td>0.018584</td>
+      <td>0.267114</td>
+      <td>0.497043</td>
+      <td>0.382672</td>
+      <td>0.240726</td>
+      <td>0.161087</td>
+      <td>-0.160735</td>
+      <td>-0.071255</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.634697</td>
+      <td>1.188660</td>
+      <td>2.275410</td>
+      <td>2.184095</td>
+      <td>3.189206</td>
+      <td>3.826391</td>
+      <td>0.703410</td>
+      <td>1.259422</td>
+      <td>0.952243</td>
+      <td>1.237806</td>
+      <td>...</td>
+      <td>1.028842</td>
+      <td>1.128245</td>
+      <td>1.333236</td>
+      <td>1.439952</td>
+      <td>1.691722</td>
+      <td>1.430553</td>
+      <td>0.918039</td>
+      <td>0.779918</td>
+      <td>0.932961</td>
+      <td>0.748377</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-3.258689</td>
+      <td>-4.067518</td>
+      <td>-28.552191</td>
+      <td>-17.801989</td>
+      <td>-6.378904</td>
+      <td>-6.908058</td>
+      <td>-3.167504</td>
+      <td>-2.825505</td>
+      <td>-3.654218</td>
+      <td>-8.042101</td>
+      <td>...</td>
+      <td>-4.309438</td>
+      <td>-4.276411</td>
+      <td>-21.273505</td>
+      <td>-5.520507</td>
+      <td>-6.780020</td>
+      <td>-2.617712</td>
+      <td>-8.310726</td>
+      <td>-3.456731</td>
+      <td>-7.189487</td>
+      <td>-4.819105</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.215161</td>
+      <td>-0.267728</td>
+      <td>-0.230129</td>
+      <td>-0.229460</td>
+      <td>-0.190989</td>
+      <td>-0.123963</td>
+      <td>-0.261792</td>
+      <td>-0.197019</td>
+      <td>-0.356774</td>
+      <td>-0.214164</td>
+      <td>...</td>
+      <td>-0.349490</td>
+      <td>-0.289498</td>
+      <td>-0.421265</td>
+      <td>-0.275030</td>
+      <td>-0.119912</td>
+      <td>-0.135779</td>
+      <td>-0.141982</td>
+      <td>-0.169364</td>
+      <td>-0.479099</td>
+      <td>-0.402733</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.082722</td>
+      <td>0.102076</td>
+      <td>0.044717</td>
+      <td>0.036156</td>
+      <td>0.116411</td>
+      <td>0.131515</td>
+      <td>0.009045</td>
+      <td>0.144223</td>
+      <td>-0.028306</td>
+      <td>0.068134</td>
+      <td>...</td>
+      <td>0.010186</td>
+      <td>0.063539</td>
+      <td>-0.010158</td>
+      <td>0.065780</td>
+      <td>0.148876</td>
+      <td>0.145279</td>
+      <td>0.137559</td>
+      <td>0.062804</td>
+      <td>-0.083260</td>
+      <td>-0.058601</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.528015</td>
+      <td>0.523162</td>
+      <td>0.405858</td>
+      <td>0.532216</td>
+      <td>0.616725</td>
+      <td>0.580870</td>
+      <td>0.268029</td>
+      <td>0.560221</td>
+      <td>0.253911</td>
+      <td>0.413308</td>
+      <td>...</td>
+      <td>0.330117</td>
+      <td>0.479763</td>
+      <td>0.361876</td>
+      <td>0.482989</td>
+      <td>0.683587</td>
+      <td>0.600652</td>
+      <td>0.510566</td>
+      <td>0.487592</td>
+      <td>0.266170</td>
+      <td>0.252387</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>22.085428</td>
+      <td>14.421991</td>
+      <td>27.557166</td>
+      <td>27.603715</td>
+      <td>35.278040</td>
+      <td>34.785942</td>
+      <td>5.079223</td>
+      <td>15.589494</td>
+      <td>10.855080</td>
+      <td>6.518868</td>
+      <td>...</td>
+      <td>10.803264</td>
+      <td>15.959706</td>
+      <td>10.649018</td>
+      <td>17.231287</td>
+      <td>23.721492</td>
+      <td>23.089832</td>
+      <td>10.844942</td>
+      <td>4.822008</td>
+      <td>7.826692</td>
+      <td>3.534737</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 18211 columns</p>
+</div></div></div>
+</div>
+<p>Luego de efectuar el código anterior, podemos decir que <strong>no hay datos faltantes</strong> en los genes de estudio, ya que, todos cuentan con 614 observaciónes, que es el tamaño de las filas del dataset.</p>
+<p>De este dataset podemos analizar la variable <code class="docutils literal notranslate"><span class="pre">control</span></code> que nos indica si esta instancia fue utilizada como control o no.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controlnum</span> <span class="o">=</span> <span class="n">detrain</span><span class="p">[</span><span class="s1">&#39;control&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controlnum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>control
+False    602
+True      12
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">load_cmap</span><span class="p">(</span><span class="s1">&#39;Amethyst&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;control&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">detrain</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de Control&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Control&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cantidad&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Usuario\AppData\Local\Temp\ipykernel_7764\2955761791.py:2: UserWarning: The palette list has more values (6) than needed (2), which may not be intended.
+  sns.countplot(x=&quot;control&quot;, data=detrain, palette=cmap.colors)
+</pre></div>
+</div>
+<img alt="_images/9c43abf181abe1b5b81e7083b27fd671f94960710cb98988fc590c02e9af095e.png" src="_images/9c43abf181abe1b5b81e7083b27fd671f94960710cb98988fc590c02e9af095e.png" />
+</div>
+</div>
+<p>Realizamos diagramas de cajas y bigotes para conocer la distribución y más información acerca de los genes, debido a que contamos con más de 18mil genes, decidimos graficar solo una parte para una mejor visualización de ellos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">genes_x</span> <span class="o">=</span> <span class="n">detrain</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar las primeras 20 columnas del DataFrame</span>
+<span class="n">df_subset</span> <span class="o">=</span> <span class="n">genes_x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+
+<span class="c1"># Crear el boxplot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>  <span class="c1"># Ajusta el tamaño del gráfico si es necesario</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_subset</span><span class="p">)</span>
+
+<span class="c1"># Mostrar el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>  <span class="c1"># Rotar los nombres de las variables si es necesario</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4de10dcef036f5e36c4b1795fda0b2af12bdea9b35e2bea10136644f3ab166af.png" src="_images/4de10dcef036f5e36c4b1795fda0b2af12bdea9b35e2bea10136644f3ab166af.png" />
+</div>
+</div>
+<p>Podemos inferir que la mayoria de genes cuentan con datos atípicos, y la mayoria de los valores oscilan entre -10 y 30.</p>
+</section>
+<section id="adatatrain-dataset">
+<h2>adatatrain (dataset)<a class="headerlink" href="#adatatrain-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adatatrain</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\adata_train.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adatatrain</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(416442312, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>La base de datos <code class="docutils literal notranslate"><span class="pre">adatatrain</span></code> contiente un total de 416’442.312 filas y 4 columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adatatrain</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs_id</th>
+      <th>gene</th>
+      <th>count</th>
+      <th>normalized_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>000006a87ba75b72</td>
+      <td>AATF</td>
+      <td>1</td>
+      <td>5.567933</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>000006a87ba75b72</td>
+      <td>ABHD12</td>
+      <td>1</td>
+      <td>5.567933</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>000006a87ba75b72</td>
+      <td>ABHD3</td>
+      <td>1</td>
+      <td>5.567933</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>000006a87ba75b72</td>
+      <td>AC004687.1</td>
+      <td>1</td>
+      <td>5.567933</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>000006a87ba75b72</td>
+      <td>AC009779.2</td>
+      <td>1</td>
+      <td>5.567933</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adatatrain</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obs_id               object
+gene                 object
+count                uint16
+normalized_count    float32
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Está compuesta por 4 variables, <strong>obs_id,</strong> <strong>gene</strong>, son categóricas, mientras que <strong>count</strong> y <strong>normalized_count</strong> son numéricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adatatrain</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>normalized_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4.164423e+08</td>
+      <td>4.164423e+08</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>3.548138e+00</td>
+      <td>5.518731e+00</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.497948e+01</td>
+      <td>9.743412e-01</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000e+00</td>
+      <td>3.536117e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000e+00</td>
+      <td>5.041668e+00</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000e+00</td>
+      <td>5.344550e+00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.000000e+00</td>
+      <td>5.825185e+00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.471000e+04</td>
+      <td>1.350578e+01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="adataobsmeta-dataset">
+<h2>adataobsmeta (dataset)<a class="headerlink" href="#adataobsmeta-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adataobsmeta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\adata_obs_meta.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta base de datos nos comparte más información técnica del experimento realizado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adataobsmeta</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs_id</th>
+      <th>library_id</th>
+      <th>plate_name</th>
+      <th>well</th>
+      <th>row</th>
+      <th>col</th>
+      <th>cell_id</th>
+      <th>donor_id</th>
+      <th>cell_type</th>
+      <th>sm_lincs_id</th>
+      <th>sm_name</th>
+      <th>SMILES</th>
+      <th>dose_uM</th>
+      <th>timepoint_hr</th>
+      <th>control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>000006a87ba75b72</td>
+      <td>library_4</td>
+      <td>plate_4</td>
+      <td>F7</td>
+      <td>F</td>
+      <td>7</td>
+      <td>PBMC</td>
+      <td>donor_2</td>
+      <td>T cells CD4+</td>
+      <td>LSM-4944</td>
+      <td>MLN 2238</td>
+      <td>CC(C)C[C@H](NC(=O)CNC(=O)c1cc(Cl)ccc1Cl)B(O)O</td>
+      <td>1.0</td>
+      <td>24</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0000233976e3cd37</td>
+      <td>library_0</td>
+      <td>plate_3</td>
+      <td>D4</td>
+      <td>D</td>
+      <td>4</td>
+      <td>PBMC</td>
+      <td>donor_1</td>
+      <td>T cells CD4+</td>
+      <td>LSM-46203</td>
+      <td>BMS-265246</td>
+      <td>CCCCOc1c(C(=O)c2c(F)cc(C)cc2F)cnc2[nH]ncc12</td>
+      <td>1.0</td>
+      <td>24</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0001533c5e876362</td>
+      <td>library_2</td>
+      <td>plate_0</td>
+      <td>B11</td>
+      <td>B</td>
+      <td>11</td>
+      <td>PBMC</td>
+      <td>donor_0</td>
+      <td>T regulatory cells</td>
+      <td>LSM-45663</td>
+      <td>Resminostat</td>
+      <td>CN(C)Cc1ccc(S(=O)(=O)n2ccc(/C=C/C(=O)NO)c2)cc1</td>
+      <td>1.0</td>
+      <td>24</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00022f989630d14b</td>
+      <td>library_35</td>
+      <td>plate_2</td>
+      <td>E6</td>
+      <td>E</td>
+      <td>6</td>
+      <td>PBMC</td>
+      <td>donor_0</td>
+      <td>T cells CD4+</td>
+      <td>LSM-43216</td>
+      <td>FK 866</td>
+      <td>O=C(/C=C/c1cccnc1)NCCCCC1CCN(C(=O)c2ccccc2)CC1</td>
+      <td>1.0</td>
+      <td>24</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0002560bd38ce03e</td>
+      <td>library_22</td>
+      <td>plate_4</td>
+      <td>B6</td>
+      <td>B</td>
+      <td>6</td>
+      <td>PBMC</td>
+      <td>donor_2</td>
+      <td>T cells CD4+</td>
+      <td>LSM-1099</td>
+      <td>Nilotinib</td>
+      <td>Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)...</td>
+      <td>1.0</td>
+      <td>24</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adataobsmeta</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240090, 15)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adataobsmeta</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obs_id           object
+library_id       object
+plate_name       object
+well             object
+row              object
+col               int64
+cell_id          object
+donor_id         object
+cell_type        object
+sm_lincs_id      object
+sm_name          object
+SMILES           object
+dose_uM         float64
+timepoint_hr      int64
+control            bool
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">adataobsmeta</span></code> cuenta con 240090 filas y 15 columnas, además, cuenta con diferentes variables, de las cuales 11 son categóricas, 3 son numéricas y 1 es booleana. Esta base de datos contiene información sobre las células y compuestos experimentales, esta información está en la variable <strong>cell_id</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adataobsmeta</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col</th>
+      <th>dose_uM</th>
+      <th>timepoint_hr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>240090.00000</td>
+      <td>240090.000000</td>
+      <td>240090.0</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>6.05665</td>
+      <td>2.462781</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.55246</td>
+      <td>4.276144</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.00000</td>
+      <td>0.100000</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>3.00000</td>
+      <td>1.000000</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>6.00000</td>
+      <td>1.000000</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>9.00000</td>
+      <td>1.000000</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>12.00000</td>
+      <td>14.100000</td>
+      <td>24.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sm_name</span></code> corresponde al nombre principal del compuesto principal en una forma estandarizada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smcount</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;sm_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smcount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sm_name
+Dimethyl Sulfoxide     28462
+Dabrafenib             26346
+Belinostat             24059
+LDN 193189              1939
+Porcn Inhibitor III     1900
+                       ...  
+ABT737                   655
+BMS-387032               416
+UNII-BXU45ZH6LI          307
+CGP 60474                 89
+Alvocidib                 51
+Name: count, Length: 147, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">donor_id</span></code> sirve para identificar la fuente del donotante de la muestra.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donorcount</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">donorcount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>donor_id
+donor_2    84442
+donor_1    81550
+donor_0    74098
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">plate_name</span></code> es un elemento que se utiliza para la organización e identificación de los datos del experimento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">platenamecount</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;plate_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">platenamecount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plate_name
+plate_4    44550
+plate_3    41881
+plate_1    39892
+plate_5    39669
+plate_2    37914
+plate_0    36184
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cell_type</span></code> contiene las células de interés para este experimentos y sus tipos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">celltypecount</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">celltypecount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_type
+T cells CD4+          124971
+NK cells               59170
+Myeloid cells          16661
+T cells CD8+           15563
+B cells                15485
+T regulatory cells      8240
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación, se muestran diferentes graficas para entender visualmente los contenidos de esta base de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cell_counts</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">cell_counts</span><span class="o">.</span><span class="n">values</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cell</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cell_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">cell_counts</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sizes</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de Cell Type&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fb322be9367c9de9a90acaf73e8e31c505abf62d88bce6694bd0ed2e2684bf5a.png" src="_images/fb322be9367c9de9a90acaf73e8e31c505abf62d88bce6694bd0ed2e2684bf5a.png" />
+</div>
+</div>
+<p>De la gráfica anterior podemos concluir que la célula <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">cell</span> <span class="pre">CD4</span> <span class="pre">+</span></code> es la que cuenta con más observaciones, con un total de <strong>124.971</strong>. Mientras que, <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">regulatory</span> <span class="pre">cell</span></code> es la que cuenta con menos observaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plate_counts</span> <span class="o">=</span> <span class="n">adataobsmeta</span><span class="p">[</span><span class="s1">&#39;plate_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">plate_counts</span><span class="o">.</span><span class="n">values</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">plate</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plate_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">plate_counts</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sizes</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de Plate Name&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/01a913d79279f4ff06bd51994d567c827e8f807c6b92d2ecaa3dc2aea4a6ef62.png" src="_images/01a913d79279f4ff06bd51994d567c827e8f807c6b92d2ecaa3dc2aea4a6ef62.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">library_id</span></code> proporciona información sobre un indentificador único para cada biblioteca, que se refiere a una medición realizada en muestras agrupadas de cada fila de la placa, esto permite distinguir entre las diferentes bibliotecas en los experimentos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;library_id&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">adataobsmeta</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de librerias&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;librerias&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cantidad&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/590b67908c07a293341a58ae266396ae46e0c04a8aa102dc268018b1598d47b3.png" src="_images/590b67908c07a293341a58ae266396ae46e0c04a8aa102dc268018b1598d47b3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;donor_id&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">adataobsmeta</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de tipos de donantes&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Donanates&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cantidad&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a0d226e71580e1ac202706b4284ac4a70ae6c8d2ef715454b36cdd12fb8a15a3.png" src="_images/a0d226e71580e1ac202706b4284ac4a70ae6c8d2ef715454b36cdd12fb8a15a3.png" />
+</div>
+</div>
+<p>Podemos observar de la gráfica anterior que <code class="docutils literal notranslate"><span class="pre">donor_2</span></code> cuenta con mayor observaciones (84442), mientras que <code class="docutils literal notranslate"><span class="pre">donor_0</span></code> cuenta es el donante con menor número de observaciones (74098).</p>
+</section>
+<section id="multiomevarmeta-dataset">
+<h2>multiomevarmeta (dataset)<a class="headerlink" href="#multiomevarmeta-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiomevarmeta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\multiome_var_meta.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiomevarmeta</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>location</th>
+      <th>gene_id</th>
+      <th>feature_type</th>
+      <th>genome</th>
+      <th>interval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>158205</td>
+      <td>158205</td>
+      <td>158205</td>
+      <td>158205</td>
+      <td>158192</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>158205</td>
+      <td>158205</td>
+      <td>2</td>
+      <td>1</td>
+      <td>158190</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>A1BG</td>
+      <td>ENSG00000121410</td>
+      <td>Peaks</td>
+      <td>GRCh38</td>
+      <td>chr21:34073577-34073578</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>1</td>
+      <td>135418</td>
+      <td>158205</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiomevarmeta</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 158205 entries, 0 to 158204
+Data columns (total 5 columns):
+ #   Column        Non-Null Count   Dtype 
+---  ------        --------------   ----- 
+ 0   location      158205 non-null  object
+ 1   gene_id       158205 non-null  object
+ 2   feature_type  158205 non-null  object
+ 3   genome        158205 non-null  object
+ 4   interval      158192 non-null  object
+dtypes: object(5)
+memory usage: 6.0+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este dataset contamos con solo variables categóricas. Este dataset, contiene más información acerca de las características de los genes.</p>
+<p>La variable <code class="docutils literal notranslate"><span class="pre">feature_type</span></code> contiene si la característica es una medición de la expresión de ARN (Gene expression) o una medición de accesibilidad a la cromatica (Peaks). Esto es esencial para diferenciar entre los tipos de datos del análisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featuarecount</span> <span class="o">=</span> <span class="n">multiomevarmeta</span><span class="p">[</span><span class="s1">&#39;feature_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">featuarecount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>feature_type
+Peaks              135418
+Gene Expression     22787
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;feature_type&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">multiomevarmeta</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de tipos de características&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tipo de característica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cantidad&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Usuario\AppData\Local\Temp\ipykernel_7764\3159184358.py:3: UserWarning: The palette list has more values (6) than needed (2), which may not be intended.
+  sns.countplot(x=&quot;feature_type&quot;, data=multiomevarmeta, palette=cmap.colors)
+</pre></div>
+</div>
+<img alt="_images/7608d9d86b9338add59e33f9608f43092c8a7163cc1f07f6c6281e7f6b6e7d69.png" src="_images/7608d9d86b9338add59e33f9608f43092c8a7163cc1f07f6c6281e7f6b6e7d69.png" />
+</div>
+</div>
+<p>Podemos inferir que <strong>Peaks</strong> contiene 135,418 observaciones, lo que la convierte en la característica con el mayor número de observaciones, mientras que <strong>Gene Expression</strong> cuenta con 22,787 observaciones.</p>
+</section>
+<section id="multiometrain-dataset">
+<h2>multiometrain (dataset)<a class="headerlink" href="#multiometrain-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiometrain</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\multiome_train.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiometrain</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(216251368, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">multiometrain</span></code> cuenta con 216’251.368 filas y 4 columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiometrain</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>normalized_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.162514e+08</td>
+      <td>2.162514e+08</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.312303e+00</td>
+      <td>2.291773e+00</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.993796e+00</td>
+      <td>2.107194e+00</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000e+00</td>
+      <td>4.198309e-02</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000e+00</td>
+      <td>7.348657e-01</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.000000e+00</td>
+      <td>1.316221e+00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.000000e+00</td>
+      <td>3.253358e+00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>5.810000e+03</td>
+      <td>1.835729e+01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiometrain</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obs_id               object
+location             object
+count                uint16
+normalized_count    float32
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>La base de datos cuenta con 4 variables, 2 categóricas y 2 numéricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">multiometrain</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>location
+B2M            25521
+MALAT1         25503
+MT-CO1         25425
+MT-ATP6        25416
+MT-CO2         25402
+               ...  
+ZNF385D-AS2        9
+PLA2G5             8
+HOXA10-AS          8
+SMIM24             6
+GATA2              3
+Name: count, Length: 158205, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="idmap-dataset">
+<h2>idmap (dataset)<a class="headerlink" href="#idmap-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idmap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Usuario\Downloads\open-problems-single-cell-perturbations\id_map.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta base de datos contiene información sobre los pares de indentificadores que ayudan a vincular diferentes características o entidades en el análisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idmap</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(255, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>El dataset <code class="docutils literal notranslate"><span class="pre">idmap</span></code> cuenta con 255 filas y 3 columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idmap</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id            int64
+cell_type    object
+sm_name      object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las variables de este dataset las conforman 2 variables categóricas y 1 variable numérica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idmap</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>255.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>127.000000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>73.756356</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>63.500000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>127.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>190.500000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>254.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smnamecount</span> <span class="o">=</span> <span class="n">idmap</span><span class="p">[</span><span class="s1">&#39;sm_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smnamecount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sm_name
+5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine    2
+Lamivudine                                                              2
+Raloxifene                                                              2
+RVX-208                                                                 2
+RN-486                                                                  2
+                                                                       ..
+Colforsin                                                               2
+Colchicine                                                              2
+BMS-387032                                                              1
+CGP 60474                                                               1
+CEP-18770 (Delanzomib)                                                  1
+Name: count, Length: 129, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>la variable <code class="docutils literal notranslate"><span class="pre">cell_type</span></code> sirve para identificar y clasificar los diferentes tipos de células presentes en el conjunto de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">idmap</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_type
+B cells          128
+Myeloid cells    127
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Purples_r&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">idmap</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">cmap</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de tipos de células&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tipo de célula&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cantidad&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b1d57a50711ffbdc3f7fe29c2dbadda746b45ecab019967267450af5f2b97b74.png" src="_images/b1d57a50711ffbdc3f7fe29c2dbadda746b45ecab019967267450af5f2b97b74.png" />
+</div>
+</div>
+<p>Podemos observar y concluir que ambas variables contienen un número muy similar de observaciones: <strong>B cells</strong> tiene 128 observaciones, mientras que <strong>Myeloid cells</strong> cuenta con 127.</p>
+</section>
+<section id="analisis-bivariado">
+<h2>Análisis bivariado<a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">genes_x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A1BG</th>
+      <th>A1BG-AS1</th>
+      <th>A2M</th>
+      <th>A2M-AS1</th>
+      <th>A2MP1</th>
+      <th>A4GALT</th>
+      <th>AAAS</th>
+      <th>AACS</th>
+      <th>AAGAB</th>
+      <th>AAK1</th>
+      <th>...</th>
+      <th>ZUP1</th>
+      <th>ZW10</th>
+      <th>ZWILCH</th>
+      <th>ZWINT</th>
+      <th>ZXDA</th>
+      <th>ZXDB</th>
+      <th>ZXDC</th>
+      <th>ZYG11B</th>
+      <th>ZYX</th>
+      <th>ZZEF1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.104720</td>
+      <td>-0.077524</td>
+      <td>-1.625596</td>
+      <td>-0.144545</td>
+      <td>0.143555</td>
+      <td>0.073229</td>
+      <td>-0.016823</td>
+      <td>0.101717</td>
+      <td>-0.005153</td>
+      <td>1.043629</td>
+      <td>...</td>
+      <td>-0.227781</td>
+      <td>-0.010752</td>
+      <td>-0.023881</td>
+      <td>0.674536</td>
+      <td>-0.453068</td>
+      <td>0.005164</td>
+      <td>-0.094959</td>
+      <td>0.034127</td>
+      <td>0.221377</td>
+      <td>0.368755</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.915953</td>
+      <td>-0.884380</td>
+      <td>0.371834</td>
+      <td>-0.081677</td>
+      <td>-0.498266</td>
+      <td>0.203559</td>
+      <td>0.604656</td>
+      <td>0.498592</td>
+      <td>-0.317184</td>
+      <td>0.375550</td>
+      <td>...</td>
+      <td>-0.494985</td>
+      <td>-0.303419</td>
+      <td>0.304955</td>
+      <td>-0.333905</td>
+      <td>-0.315516</td>
+      <td>-0.369626</td>
+      <td>-0.095079</td>
+      <td>0.704780</td>
+      <td>1.096702</td>
+      <td>-0.869887</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.387721</td>
+      <td>-0.305378</td>
+      <td>0.567777</td>
+      <td>0.303895</td>
+      <td>-0.022653</td>
+      <td>-0.480681</td>
+      <td>0.467144</td>
+      <td>-0.293205</td>
+      <td>-0.005098</td>
+      <td>0.214918</td>
+      <td>...</td>
+      <td>-0.119422</td>
+      <td>-0.033608</td>
+      <td>-0.153123</td>
+      <td>0.183597</td>
+      <td>-0.555678</td>
+      <td>-1.494789</td>
+      <td>-0.213550</td>
+      <td>0.415768</td>
+      <td>0.078439</td>
+      <td>-0.259365</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.232893</td>
+      <td>0.129029</td>
+      <td>0.336897</td>
+      <td>0.486946</td>
+      <td>0.767661</td>
+      <td>0.718590</td>
+      <td>-0.162145</td>
+      <td>0.157206</td>
+      <td>-3.654218</td>
+      <td>-0.212402</td>
+      <td>...</td>
+      <td>0.451679</td>
+      <td>0.704643</td>
+      <td>0.015468</td>
+      <td>-0.103868</td>
+      <td>0.865027</td>
+      <td>0.189114</td>
+      <td>0.224700</td>
+      <td>-0.048233</td>
+      <td>0.216139</td>
+      <td>-0.085024</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.290652</td>
+      <td>-0.063864</td>
+      <td>-0.017443</td>
+      <td>-0.541154</td>
+      <td>0.570982</td>
+      <td>2.022829</td>
+      <td>0.600011</td>
+      <td>1.231275</td>
+      <td>0.236739</td>
+      <td>0.338703</td>
+      <td>...</td>
+      <td>0.758474</td>
+      <td>0.510762</td>
+      <td>0.607401</td>
+      <td>-0.123059</td>
+      <td>0.214366</td>
+      <td>0.487838</td>
+      <td>-0.819775</td>
+      <td>0.112365</td>
+      <td>-0.122193</td>
+      <td>0.676629</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>609</th>
+      <td>-0.014372</td>
+      <td>-0.122464</td>
+      <td>-0.456366</td>
+      <td>-0.147894</td>
+      <td>-0.545382</td>
+      <td>-0.544709</td>
+      <td>0.282458</td>
+      <td>-0.431359</td>
+      <td>-0.364961</td>
+      <td>0.043123</td>
+      <td>...</td>
+      <td>-0.549987</td>
+      <td>-2.200925</td>
+      <td>0.359806</td>
+      <td>1.073983</td>
+      <td>0.356939</td>
+      <td>-0.029603</td>
+      <td>-0.528817</td>
+      <td>0.105138</td>
+      <td>0.491015</td>
+      <td>-0.979951</td>
+    </tr>
+    <tr>
+      <th>610</th>
+      <td>-0.455549</td>
+      <td>0.188181</td>
+      <td>0.595734</td>
+      <td>-0.100299</td>
+      <td>0.786192</td>
+      <td>0.090954</td>
+      <td>0.169523</td>
+      <td>0.428297</td>
+      <td>0.106553</td>
+      <td>0.435088</td>
+      <td>...</td>
+      <td>-1.236905</td>
+      <td>0.003854</td>
+      <td>-0.197569</td>
+      <td>-0.175307</td>
+      <td>0.101391</td>
+      <td>1.028394</td>
+      <td>0.034144</td>
+      <td>-0.231642</td>
+      <td>1.023994</td>
+      <td>-0.064760</td>
+    </tr>
+    <tr>
+      <th>611</th>
+      <td>0.338168</td>
+      <td>-0.109079</td>
+      <td>0.270182</td>
+      <td>-0.436586</td>
+      <td>-0.069476</td>
+      <td>-0.061539</td>
+      <td>0.002818</td>
+      <td>-0.027167</td>
+      <td>-0.383696</td>
+      <td>0.226289</td>
+      <td>...</td>
+      <td>0.077579</td>
+      <td>-1.101637</td>
+      <td>0.457201</td>
+      <td>0.535184</td>
+      <td>-0.198404</td>
+      <td>-0.005004</td>
+      <td>0.552810</td>
+      <td>-0.209077</td>
+      <td>0.389751</td>
+      <td>-0.337082</td>
+    </tr>
+    <tr>
+      <th>612</th>
+      <td>0.101138</td>
+      <td>-0.409724</td>
+      <td>-0.606292</td>
+      <td>-0.071300</td>
+      <td>-0.001789</td>
+      <td>-0.706087</td>
+      <td>-0.620919</td>
+      <td>-1.485381</td>
+      <td>0.059303</td>
+      <td>-0.032584</td>
+      <td>...</td>
+      <td>0.005951</td>
+      <td>-0.893093</td>
+      <td>-1.003029</td>
+      <td>-0.080367</td>
+      <td>-0.076604</td>
+      <td>0.024849</td>
+      <td>0.012862</td>
+      <td>-0.029684</td>
+      <td>0.005506</td>
+      <td>-1.733112</td>
+    </tr>
+    <tr>
+      <th>613</th>
+      <td>-0.757116</td>
+      <td>0.085910</td>
+      <td>-0.730025</td>
+      <td>-1.367801</td>
+      <td>-0.695944</td>
+      <td>-0.724985</td>
+      <td>0.121436</td>
+      <td>-0.785661</td>
+      <td>-0.240842</td>
+      <td>-0.139620</td>
+      <td>...</td>
+      <td>0.232343</td>
+      <td>-2.247816</td>
+      <td>-0.346036</td>
+      <td>-0.919567</td>
+      <td>-1.131372</td>
+      <td>-0.120252</td>
+      <td>-0.064537</td>
+      <td>-0.603280</td>
+      <td>-0.098041</td>
+      <td>-0.750681</td>
+    </tr>
+  </tbody>
+</table>
+<p>614 rows × 18211 columns</p>
+</div></div></div>
+</div>
+<p>En esta ocasión, realizamos una matriz de correlación para identificar de manera más profunda las variables que presentan correlación entre sí. Aunque analizaremos si sería necesario eliminar algunas de estas variables, en este caso no procederemos con su eliminación, ya que mantener todos los genes es fundamental para entrenar nuestros modelos. Sin embargo, como ejercicio práctico, visualizaremos la matriz de correlaciones para observar estos patrones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">genes_x</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              A1BG  A1BG-AS1       A2M   A2M-AS1     A2MP1    A4GALT  \
+A1BG      1.000000  0.714458  0.457526  0.522942  0.778408  0.837132   
+A1BG-AS1  0.714458  1.000000  0.301795  0.369418  0.577066  0.712535   
+A2M       0.457526  0.301795  1.000000  0.614617  0.407135  0.350203   
+A2M-AS1   0.522942  0.369418  0.614617  1.000000  0.625173  0.347183   
+A2MP1     0.778408  0.577066  0.407135  0.625173  1.000000  0.741961   
+...            ...       ...       ...       ...       ...       ...   
+ZXDB      0.792222  0.697719  0.536887  0.547979  0.667382  0.750323   
+ZXDC      0.515260  0.380695  0.599092  0.469065  0.398134  0.432041   
+ZYG11B    0.282706  0.323991  0.234177  0.100440  0.126451  0.225936   
+ZYX       0.064979  0.085938  0.054594  0.235550  0.130264  0.001245   
+ZZEF1     0.149878  0.072710  0.214293  0.208293  0.141848  0.104180   
+
+              AAAS      AACS     AAGAB      AAK1  ...      ZUP1      ZW10  \
+A1BG      0.439837  0.705893  0.192259 -0.070669  ...  0.194641  0.652388   
+A1BG-AS1  0.412077  0.638482  0.245015 -0.019140  ...  0.177971  0.591506   
+A2M       0.187354  0.505190  0.011625 -0.193726  ... -0.045483  0.456399   
+A2M-AS1   0.252877  0.449189 -0.119271 -0.009788  ... -0.148671  0.404312   
+A2MP1     0.355945  0.567186  0.146833  0.037726  ...  0.074257  0.531156   
+...            ...       ...       ...       ...  ...       ...       ...   
+ZXDB      0.417411  0.730304  0.185898 -0.180804  ...  0.185169  0.669619   
+ZXDC      0.219351  0.557733  0.100784 -0.185686  ...  0.103798  0.524886   
+ZYG11B    0.164784  0.329503  0.217202  0.193395  ...  0.163312  0.276594   
+ZYX       0.083897 -0.030927 -0.060895  0.230573  ... -0.164996  0.051608   
+ZZEF1     0.092692  0.161280  0.044080  0.043768  ...  0.014108  0.143265   
+
+            ZWILCH     ZWINT      ZXDA      ZXDB      ZXDC    ZYG11B  \
+A1BG      0.439657  0.755152  0.805117  0.792222  0.515260  0.282706   
+A1BG-AS1  0.302379  0.668320  0.630534  0.697719  0.380695  0.323991   
+A2M       0.617574  0.486742  0.505622  0.536887  0.599092  0.234177   
+A2M-AS1   0.329363  0.475214  0.583882  0.547979  0.469065  0.100440   
+A2MP1     0.267254  0.655978  0.768620  0.667382  0.398134  0.126451   
+...            ...       ...       ...       ...       ...       ...   
+ZXDB      0.532330  0.756865  0.832125  1.000000  0.624481  0.274782   
+ZXDC      0.634150  0.554500  0.585897  0.624481  1.000000  0.243037   
+ZYG11B    0.194563  0.239123  0.176127  0.274782  0.243037  1.000000   
+ZYX      -0.192064  0.076097 -0.009516 -0.003387 -0.115429  0.044252   
+ZZEF1     0.139490  0.102588  0.167263  0.134351  0.211058  0.063161   
+
+               ZYX     ZZEF1  
+A1BG      0.064979  0.149878  
+A1BG-AS1  0.085938  0.072710  
+A2M       0.054594  0.214293  
+A2M-AS1   0.235550  0.208293  
+A2MP1     0.130264  0.141848  
+...            ...       ...  
+ZXDB     -0.003387  0.134351  
+ZXDC     -0.115429  0.211058  
+ZYG11B    0.044252  0.063161  
+ZYX       1.000000 -0.011278  
+ZZEF1    -0.011278  1.000000  
+
+[18211 rows x 18211 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se eliminarán la variables que están correlacionadas en caso de que sea útil, pero para entrenar nuestro modelo, nos quedaremos con el dataset que contiene a todos los genes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">correlation_matrix</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+
+<span class="c1"># Encontrar columnas a eliminar</span>
+<span class="n">to_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">mask</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_drop</span><span class="p">:</span>
+        <span class="n">correlated_columns</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">correlated_columns</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> 
+            <span class="n">to_drop</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">correlated_columns</span><span class="p">[</span><span class="n">correlated_columns</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">cleaned_correlation_matrix</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cleaned_correlation_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            AAAS     AAGAB      AAK1      AAR2    AARSD1     AASDH  AASDHPPT  \
+AAAS    1.000000  0.145489 -0.040171  0.272952  0.314979  0.148464 -0.037022   
+AAGAB   0.145489  1.000000  0.066934  0.148145  0.167898  0.040731  0.042383   
+AAK1   -0.040171  0.066934  1.000000 -0.235955 -0.150587 -0.019211  0.160261   
+AAR2    0.272952  0.148145 -0.235955  1.000000  0.506242  0.234962 -0.073885   
+AARSD1  0.314979  0.167898 -0.150587  0.506242  1.000000  0.147204 -0.095603   
+...          ...       ...       ...       ...       ...       ...       ...   
+ZSWIM8  0.163369  0.424849  0.051757  0.289295  0.258193  0.153596 -0.042629   
+ZUP1    0.145371  0.407756 -0.149111  0.168954  0.198811 -0.034254  0.019237   
+ZYG11B  0.164784  0.217202  0.193395  0.172679  0.166717  0.145886  0.137706   
+ZYX     0.083897 -0.060895  0.230573 -0.061867 -0.080782  0.054273 -0.050025   
+ZZEF1   0.092692  0.044080  0.043768  0.171946  0.176072  0.132885  0.099511   
+
+            AATF     ABCA5     ABCB7  ...   ZSCAN25   ZSCAN26   ZSCAN29  \
+AAAS   -0.096611  0.227899  0.157888  ...  0.285926  0.324908  0.268128   
+AAGAB  -0.077140  0.040043  0.022266  ...  0.158205  0.167338 -0.070069   
+AAK1    0.002888 -0.104397 -0.124104  ... -0.133762 -0.061624 -0.160254   
+AAR2   -0.111666  0.372879  0.307240  ...  0.547501  0.403183  0.516523   
+AARSD1 -0.131371  0.292748  0.322046  ...  0.464642  0.381435  0.441613   
+...          ...       ...       ...  ...       ...       ...       ...   
+ZSWIM8 -0.103664  0.251832  0.190485  ...  0.285219  0.264702  0.176068   
+ZUP1    0.080036  0.086435  0.047117  ...  0.195645  0.225054 -0.012836   
+ZYG11B -0.119980  0.210153  0.158086  ...  0.225522  0.156673  0.125922   
+ZYX     0.005907 -0.027974 -0.020487  ...  0.040070  0.066340  0.029140   
+ZZEF1   0.050106  0.139759  0.192820  ...  0.121768  0.105452  0.210226   
+
+         ZSCAN32    ZSWIM7    ZSWIM8      ZUP1    ZYG11B       ZYX     ZZEF1  
+AAAS    0.327332  0.067576  0.163369  0.145371  0.164784  0.083897  0.092692  
+AAGAB   0.239777  0.105637  0.424849  0.407756  0.217202 -0.060895  0.044080  
+AAK1   -0.097294  0.217240  0.051757 -0.149111  0.193395  0.230573  0.043768  
+AAR2    0.486030 -0.133967  0.289295  0.168954  0.172679 -0.061867  0.171946  
+AARSD1  0.480524 -0.041806  0.258193  0.198811  0.166717 -0.080782  0.176072  
+...          ...       ...       ...       ...       ...       ...       ...  
+ZSWIM8  0.378310  0.091011  1.000000  0.347682  0.356516  0.013623  0.141306  
+ZUP1    0.269726  0.050289  0.347682  1.000000  0.163312 -0.164996  0.014108  
+ZYG11B  0.222438  0.141408  0.356516  0.163312  1.000000  0.044252  0.063161  
+ZYX     0.001410  0.153577  0.013623 -0.164996  0.044252  1.000000 -0.011278  
+ZZEF1   0.117430  0.035601  0.141306  0.014108  0.063161 -0.011278  1.000000  
+
+[4538 rows x 4538 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables_remaining</span> <span class="o">=</span> <span class="n">cleaned_correlation_matrix</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">df_remaining_variables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">variables_remaining</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Variables&#39;</span><span class="p">])</span>
+<span class="n">filtered_genes</span><span class="o">=</span> <span class="n">genes_x</span><span class="p">[</span><span class="n">variables_remaining</span><span class="p">]</span>
+<span class="n">filtered_genes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AAAS</th>
+      <th>AAGAB</th>
+      <th>AAK1</th>
+      <th>AAR2</th>
+      <th>AARSD1</th>
+      <th>AASDH</th>
+      <th>AASDHPPT</th>
+      <th>AATF</th>
+      <th>ABCA5</th>
+      <th>ABCB7</th>
+      <th>...</th>
+      <th>ZSCAN25</th>
+      <th>ZSCAN26</th>
+      <th>ZSCAN29</th>
+      <th>ZSCAN32</th>
+      <th>ZSWIM7</th>
+      <th>ZSWIM8</th>
+      <th>ZUP1</th>
+      <th>ZYG11B</th>
+      <th>ZYX</th>
+      <th>ZZEF1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.016823</td>
+      <td>-0.005153</td>
+      <td>1.043629</td>
+      <td>0.088934</td>
+      <td>-0.126706</td>
+      <td>-2.670154</td>
+      <td>0.624403</td>
+      <td>0.514184</td>
+      <td>0.331059</td>
+      <td>-0.221918</td>
+      <td>...</td>
+      <td>-1.067981</td>
+      <td>0.924709</td>
+      <td>-0.562809</td>
+      <td>-0.931970</td>
+      <td>0.179530</td>
+      <td>0.220086</td>
+      <td>-0.227781</td>
+      <td>0.034127</td>
+      <td>0.221377</td>
+      <td>0.368755</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.604656</td>
+      <td>-0.317184</td>
+      <td>0.375550</td>
+      <td>0.188528</td>
+      <td>0.133680</td>
+      <td>-0.133070</td>
+      <td>-0.104862</td>
+      <td>0.119080</td>
+      <td>0.267578</td>
+      <td>0.450027</td>
+      <td>...</td>
+      <td>-0.178712</td>
+      <td>-0.605487</td>
+      <td>-0.019590</td>
+      <td>-0.052460</td>
+      <td>1.262570</td>
+      <td>0.357003</td>
+      <td>-0.494985</td>
+      <td>0.704780</td>
+      <td>1.096702</td>
+      <td>-0.869887</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.467144</td>
+      <td>-0.005098</td>
+      <td>0.214918</td>
+      <td>-2.242325</td>
+      <td>0.162589</td>
+      <td>-0.134455</td>
+      <td>0.089236</td>
+      <td>0.848633</td>
+      <td>0.558572</td>
+      <td>-0.714563</td>
+      <td>...</td>
+      <td>-0.032028</td>
+      <td>-0.002080</td>
+      <td>0.525158</td>
+      <td>0.303495</td>
+      <td>0.225485</td>
+      <td>0.131672</td>
+      <td>-0.119422</td>
+      <td>0.415768</td>
+      <td>0.078439</td>
+      <td>-0.259365</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.162145</td>
+      <td>-3.654218</td>
+      <td>-0.212402</td>
+      <td>-0.262876</td>
+      <td>0.108755</td>
+      <td>0.032864</td>
+      <td>-0.688623</td>
+      <td>2.008549</td>
+      <td>0.049918</td>
+      <td>1.191746</td>
+      <td>...</td>
+      <td>0.289975</td>
+      <td>0.504879</td>
+      <td>0.163295</td>
+      <td>1.658680</td>
+      <td>-0.203936</td>
+      <td>2.060546</td>
+      <td>0.451679</td>
+      <td>-0.048233</td>
+      <td>0.216139</td>
+      <td>-0.085024</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.600011</td>
+      <td>0.236739</td>
+      <td>0.338703</td>
+      <td>-0.035923</td>
+      <td>1.179433</td>
+      <td>-0.898467</td>
+      <td>0.130078</td>
+      <td>-0.816469</td>
+      <td>0.801710</td>
+      <td>-0.256717</td>
+      <td>...</td>
+      <td>-0.329395</td>
+      <td>0.045852</td>
+      <td>-0.132945</td>
+      <td>-0.074826</td>
+      <td>-0.145054</td>
+      <td>0.965736</td>
+      <td>0.758474</td>
+      <td>0.112365</td>
+      <td>-0.122193</td>
+      <td>0.676629</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>609</th>
+      <td>0.282458</td>
+      <td>-0.364961</td>
+      <td>0.043123</td>
+      <td>-1.128044</td>
+      <td>-0.390320</td>
+      <td>-0.485878</td>
+      <td>-0.571904</td>
+      <td>-0.743107</td>
+      <td>-1.080498</td>
+      <td>-2.530061</td>
+      <td>...</td>
+      <td>-0.250088</td>
+      <td>-3.134873</td>
+      <td>-0.511368</td>
+      <td>1.111968</td>
+      <td>0.000051</td>
+      <td>-0.626368</td>
+      <td>-0.549987</td>
+      <td>0.105138</td>
+      <td>0.491015</td>
+      <td>-0.979951</td>
+    </tr>
+    <tr>
+      <th>610</th>
+      <td>0.169523</td>
+      <td>0.106553</td>
+      <td>0.435088</td>
+      <td>-1.115466</td>
+      <td>0.584750</td>
+      <td>-0.158582</td>
+      <td>-0.643390</td>
+      <td>-0.500306</td>
+      <td>0.445424</td>
+      <td>-0.607400</td>
+      <td>...</td>
+      <td>-0.832037</td>
+      <td>0.074903</td>
+      <td>0.386341</td>
+      <td>-0.153593</td>
+      <td>-0.538152</td>
+      <td>0.047483</td>
+      <td>-1.236905</td>
+      <td>-0.231642</td>
+      <td>1.023994</td>
+      <td>-0.064760</td>
+    </tr>
+    <tr>
+      <th>611</th>
+      <td>0.002818</td>
+      <td>-0.383696</td>
+      <td>0.226289</td>
+      <td>0.976024</td>
+      <td>1.835000</td>
+      <td>-0.206824</td>
+      <td>-0.752374</td>
+      <td>0.163126</td>
+      <td>0.134690</td>
+      <td>-0.460614</td>
+      <td>...</td>
+      <td>-0.714794</td>
+      <td>-0.166825</td>
+      <td>-0.434708</td>
+      <td>-0.605640</td>
+      <td>0.697416</td>
+      <td>0.225507</td>
+      <td>0.077579</td>
+      <td>-0.209077</td>
+      <td>0.389751</td>
+      <td>-0.337082</td>
+    </tr>
+    <tr>
+      <th>612</th>
+      <td>-0.620919</td>
+      <td>0.059303</td>
+      <td>-0.032584</td>
+      <td>-0.438237</td>
+      <td>0.240634</td>
+      <td>-0.144547</td>
+      <td>0.153796</td>
+      <td>0.150626</td>
+      <td>0.028250</td>
+      <td>-0.574156</td>
+      <td>...</td>
+      <td>-1.883349</td>
+      <td>1.139340</td>
+      <td>-0.087040</td>
+      <td>-1.157477</td>
+      <td>0.369929</td>
+      <td>0.625152</td>
+      <td>0.005951</td>
+      <td>-0.029684</td>
+      <td>0.005506</td>
+      <td>-1.733112</td>
+    </tr>
+    <tr>
+      <th>613</th>
+      <td>0.121436</td>
+      <td>-0.240842</td>
+      <td>-0.139620</td>
+      <td>0.442848</td>
+      <td>0.134176</td>
+      <td>-0.357995</td>
+      <td>-0.019944</td>
+      <td>0.109802</td>
+      <td>-0.812748</td>
+      <td>0.133683</td>
+      <td>...</td>
+      <td>-0.126139</td>
+      <td>0.232608</td>
+      <td>-0.352663</td>
+      <td>-0.186400</td>
+      <td>0.612298</td>
+      <td>0.005135</td>
+      <td>0.232343</td>
+      <td>-0.603280</td>
+      <td>-0.098041</td>
+      <td>-0.750681</td>
+    </tr>
+  </tbody>
+</table>
+<p>614 rows × 4538 columns</p>
+</div></div></div>
+</div>
+<p>Además, realizaremos gráficas para ver de manera visual la correlación entre 2 tipos de genes que tenga correlación y analizaremmos dos genes que no la tengan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;A1BG-AS1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;A1BG&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;cell_type&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">detrain</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set2&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A1BG y A1BG-AS1 coloreado por tipo de célula&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;A1BG&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;A1BG-AS1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tipo de célula&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9c638a1f4f33f64611d1b9c33d47b47b64b85c23e8f10c78927ca883281693f0.png" src="_images/9c638a1f4f33f64611d1b9c33d47b47b64b85c23e8f10c78927ca883281693f0.png" />
+</div>
+</div>
+<p>De la gráfica anterior podemos observar una una correlación positiva ya que cuando una de las variables aumenta, la otra también lo hace. Por otro lado, se puede ver los colores de las células que influyen en estos genes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;ZYX&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;AATF&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;cell_type&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">detrain</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set2&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ZYX y AATF coloreado por tipo de célula&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;ZYX&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;AATF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tipo de célula&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/00a13020474d9d06c25c17a806f6a7f5c10dd2354ef07d5825929b9c63942255.png" src="_images/00a13020474d9d06c25c17a806f6a7f5c10dd2354ef07d5825929b9c63942255.png" />
+</div>
+</div>
+<p>De la gráfica anterior podemos decir que no se observa una correlación clara, ya que ambas variables están concentradas en los mismos valores, por lo que se puede concluir que no hay correlación ni positiva ni negativa.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="segundopunto_parte1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Punto 2 (parte 1) y Punto 3</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cuartopunto.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Ejercicio 4 (modelo de regresión)</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Punto 2 (parte 2)</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-cell-pertubations"><strong>Single-Cell pertubations</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis exploratorio de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-que-consiste"><strong>En que consiste</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-de-los-datos"><strong>Fuente de los datos</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedimiento-del-experimento"><strong>Procedimiento del experimento</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-descriptivo-de-los-datos">Análisis Descriptivo de los Datos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrain-dataset">detrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adatatrain-dataset">adatatrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adataobsmeta-dataset">adataobsmeta (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiomevarmeta-dataset">multiomevarmeta (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiometrain-dataset">multiometrain (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idmap-dataset">idmap (dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">Análisis bivariado</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gwyneth Blanco y Nicoll Fontalvo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

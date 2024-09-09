@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: primerpunto_parte1
+- file: primerpunto_parte2
+- file: segundopunto_parte1
+- file: segundopunto_parte2
+- file: cuartopunto
